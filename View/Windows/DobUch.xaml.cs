@@ -48,6 +48,9 @@ namespace ProfRabot.View.Windows
                 mes = "";
                 return;
             }
+            Models.Journal journal = new Models.Journal()
+            {
+            };
         }
     }
 }
