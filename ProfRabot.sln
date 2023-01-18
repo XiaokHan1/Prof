@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31911.196
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProfRabot", "ProfRabot.csproj", "{262FEBC1-E66B-4179-A9FE-8247FB372FDB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{262FEBC1-E66B-4179-A9FE-8247FB372FDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{262FEBC1-E66B-4179-A9FE-8247FB372FDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{262FEBC1-E66B-4179-A9FE-8247FB372FDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{262FEBC1-E66B-4179-A9FE-8247FB372FDB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6C8F806A-EDC0-457F-A553-F29B30419381}
+	EndGlobalSection
+EndGlobal

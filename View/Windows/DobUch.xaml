@@ -1,0 +1,71 @@
+﻿<Window x:Class="ProfRabot.View.Windows.DobUch"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProfRabot.View.Windows"
+        mc:Ignorable="d"
+        Title="DobUch" Height="450" Width="800">
+
+    <Window.Background>
+        <ImageBrush ImageSource="/Resource/111.jpg"/>
+    </Window.Background>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="8*" />
+            <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Row="1">
+            <TextBlock Margin="0 20 0 45" FontWeight="Bold" FontStyle="Italic" Foreground="White" FontSize="20" Text="Введите номер вагона"/>
+            <TextBlock FontWeight="Bold" FontStyle="Italic" Foreground="White" FontSize="20" Text="Введите наименование работы"/>
+            <TextBlock Margin="0 35 0 25" FontWeight="Bold" FontStyle="Italic" Foreground="White" FontSize="20" Text="Введите дату начало работы"/>
+            <TextBlock FontSize="20" Text="Введите дату окончания работы" FontWeight="Bold" FontStyle="Italic" Foreground="White"/>
+        </StackPanel>
+        
+        <StackPanel Grid.Column="1" Grid.Row="1">
+            <TextBox Height="50" Name="VagTb" Margin="10">
+                <TextBox.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="18" />
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
+            
+            <TextBox Height="50" Name="RabTb" Margin="10">
+                <TextBox.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="18" />
+                    </Style>
+                </TextBox.Resources>
+
+            </TextBox>
+            
+            <DatePicker Margin="10" FontSize="18" Name="Dtg1"/>
+            
+            <DatePicker Margin="10" FontSize="18" Name="Dtg2"/>
+        </StackPanel>
+
+        <Button Margin="20 0 80 20" Grid.Row="2" Content="Назад" Click="Button_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="18" />
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button Grid.Column="1" Margin="20 0 80 20" Grid.Row="2" Content="Добавить" Click="Button_Click_1">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="18" />
+                </Style>
+            </Button.Resources>
+        </Button>
+    </Grid>
+</Window>

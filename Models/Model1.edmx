@@ -1,0 +1,349 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище FamilyControl10Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Boks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Journal">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdVagon" Type="int" Nullable="false" />
+          <Property Name="IdRabota" Type="int" Nullable="false" />
+          <Property Name="DateAdd" Type="date" Nullable="false" />
+          <Property Name="DateEnd" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rabota">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdStatus" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Vagon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Number" Type="int" Nullable="false" />
+          <Property Name="IdBoks" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Journal_Rabota1">
+          <End Role="Rabota" Type="Self.Rabota" Multiplicity="1" />
+          <End Role="Journal" Type="Self.Journal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rabota">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Journal">
+              <PropertyRef Name="IdRabota" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Journal_Vagon1">
+          <End Role="Vagon" Type="Self.Vagon" Multiplicity="1" />
+          <End Role="Journal" Type="Self.Journal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vagon">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Journal">
+              <PropertyRef Name="IdVagon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rabota_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="Rabota" Type="Self.Rabota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Rabota">
+              <PropertyRef Name="IdStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vagon_Boks">
+          <End Role="Boks" Type="Self.Boks" Multiplicity="1" />
+          <End Role="Vagon" Type="Self.Vagon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Boks">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Vagon">
+              <PropertyRef Name="IdBoks" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище FamilyControl10ModelContainer">
+          <EntitySet Name="Boks" EntityType="Self.Boks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Journal" EntityType="Self.Journal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rabota" EntityType="Self.Rabota" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vagon" EntityType="Self.Vagon" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Journal_Rabota1" Association="Self.FK_Journal_Rabota1">
+            <End Role="Rabota" EntitySet="Rabota" />
+            <End Role="Journal" EntitySet="Journal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Journal_Vagon1" Association="Self.FK_Journal_Vagon1">
+            <End Role="Vagon" EntitySet="Vagon" />
+            <End Role="Journal" EntitySet="Journal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rabota_Status" Association="Self.FK_Rabota_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Rabota" EntitySet="Rabota" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vagon_Boks" Association="Self.FK_Vagon_Boks">
+            <End Role="Boks" EntitySet="Boks" />
+            <End Role="Vagon" EntitySet="Vagon" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FamilyControl10Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="FamilyControl10Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Boks" EntityType="FamilyControl10Model.Boks" />
+          <EntitySet Name="Journal" EntityType="FamilyControl10Model.Journal" />
+          <EntitySet Name="Rabota" EntityType="FamilyControl10Model.Rabota" />
+          <EntitySet Name="Status" EntityType="FamilyControl10Model.Status" />
+          <EntitySet Name="sysdiagrams" EntityType="FamilyControl10Model.sysdiagrams" />
+          <EntitySet Name="Vagon" EntityType="FamilyControl10Model.Vagon" />
+          <AssociationSet Name="FK_Vagon_Boks" Association="FamilyControl10Model.FK_Vagon_Boks">
+            <End Role="Boks" EntitySet="Boks" />
+            <End Role="Vagon" EntitySet="Vagon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Journal_Rabota1" Association="FamilyControl10Model.FK_Journal_Rabota1">
+            <End Role="Rabota" EntitySet="Rabota" />
+            <End Role="Journal" EntitySet="Journal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Journal_Vagon1" Association="FamilyControl10Model.FK_Journal_Vagon1">
+            <End Role="Vagon" EntitySet="Vagon" />
+            <End Role="Journal" EntitySet="Journal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rabota_Status" Association="FamilyControl10Model.FK_Rabota_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Rabota" EntitySet="Rabota" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Boks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Vagon" Relationship="FamilyControl10Model.FK_Vagon_Boks" FromRole="Boks" ToRole="Vagon" />
+        </EntityType>
+        <EntityType Name="Journal">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdVagon" Type="Int32" Nullable="false" />
+          <Property Name="IdRabota" Type="Int32" Nullable="false" />
+          <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DateEnd" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Rabota" Relationship="FamilyControl10Model.FK_Journal_Rabota1" FromRole="Journal" ToRole="Rabota" />
+          <NavigationProperty Name="Vagon" Relationship="FamilyControl10Model.FK_Journal_Vagon1" FromRole="Journal" ToRole="Vagon" />
+        </EntityType>
+        <EntityType Name="Rabota">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdStatus" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Journal" Relationship="FamilyControl10Model.FK_Journal_Rabota1" FromRole="Rabota" ToRole="Journal" />
+          <NavigationProperty Name="Status" Relationship="FamilyControl10Model.FK_Rabota_Status" FromRole="Rabota" ToRole="Status" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Rabota" Relationship="FamilyControl10Model.FK_Rabota_Status" FromRole="Status" ToRole="Rabota" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Vagon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Number" Type="Int32" Nullable="false" />
+          <Property Name="IdBoks" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Boks" Relationship="FamilyControl10Model.FK_Vagon_Boks" FromRole="Vagon" ToRole="Boks" />
+          <NavigationProperty Name="Journal" Relationship="FamilyControl10Model.FK_Journal_Vagon1" FromRole="Vagon" ToRole="Journal" />
+        </EntityType>
+        <Association Name="FK_Vagon_Boks">
+          <End Type="FamilyControl10Model.Boks" Role="Boks" Multiplicity="1" />
+          <End Type="FamilyControl10Model.Vagon" Role="Vagon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Boks">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Vagon">
+              <PropertyRef Name="IdBoks" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Journal_Rabota1">
+          <End Type="FamilyControl10Model.Rabota" Role="Rabota" Multiplicity="1" />
+          <End Type="FamilyControl10Model.Journal" Role="Journal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rabota">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Journal">
+              <PropertyRef Name="IdRabota" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Journal_Vagon1">
+          <End Type="FamilyControl10Model.Vagon" Role="Vagon" Multiplicity="1" />
+          <End Type="FamilyControl10Model.Journal" Role="Journal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vagon">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Journal">
+              <PropertyRef Name="IdVagon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rabota_Status">
+          <End Type="FamilyControl10Model.Status" Role="Status" Multiplicity="1" />
+          <End Type="FamilyControl10Model.Rabota" Role="Rabota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Rabota">
+              <PropertyRef Name="IdStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище FamilyControl10ModelContainer" CdmEntityContainer="FamilyControl10Entities">
+          <EntitySetMapping Name="Boks">
+            <EntityTypeMapping TypeName="FamilyControl10Model.Boks">
+              <MappingFragment StoreEntitySet="Boks">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Journal">
+            <EntityTypeMapping TypeName="FamilyControl10Model.Journal">
+              <MappingFragment StoreEntitySet="Journal">
+                <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
+                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
+                <ScalarProperty Name="IdRabota" ColumnName="IdRabota" />
+                <ScalarProperty Name="IdVagon" ColumnName="IdVagon" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rabota">
+            <EntityTypeMapping TypeName="FamilyControl10Model.Rabota">
+              <MappingFragment StoreEntitySet="Rabota">
+                <ScalarProperty Name="IdStatus" ColumnName="IdStatus" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="FamilyControl10Model.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="FamilyControl10Model.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vagon">
+            <EntityTypeMapping TypeName="FamilyControl10Model.Vagon">
+              <MappingFragment StoreEntitySet="Vagon">
+                <ScalarProperty Name="IdBoks" ColumnName="IdBoks" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
