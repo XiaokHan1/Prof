@@ -30,10 +30,22 @@
         <ComboBox Name="BoksCmb" Grid.Row="1" Grid.Column="2" Margin="0 30 0 30" FontSize="20"/>
 
         <Button Content="Назад" Grid.Row="3" Margin="285 30 15 30" FontSize="20" 
-                FontWeight="Bold" FontFamily="Times New Roman" Click="Button_Click"/>
+                FontWeight="Bold" FontFamily="Times New Roman" Click="Button_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="18" />
+                </Style>
+            </Button.Resources>
+        </Button>
 
         <Button Content="Добавить" Grid.Column="2" Grid.Row="3" Margin="15 30 15 30" FontSize="20" 
-                FontWeight="Bold" FontFamily="Times New Roman" Name="BtnAdd" Click="BtnAdd_Click"/>
+                FontWeight="Bold" FontFamily="Times New Roman" Name="BtnAdd" Click="BtnAdd_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="18" />
+                </Style>
+            </Button.Resources>
+        </Button>
 
     </Grid>
 </Window>

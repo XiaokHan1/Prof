@@ -50,7 +50,19 @@ namespace ProfRabot.View.Windows
             }
             Models.Journal journal = new Models.Journal()
             {
+                IdVagon = int.Parse(VagTb.Text),
+                IdRabota = int.Parse(RabTb.Text),
+                DateAdd = (DateTime)Dtg1.SelectedDate,
+                DateEnd = (DateTime)Dtg2.SelectedDate
             };
+            Helpers.ClassConnect.family.Journal.Add(journal);
+            Helpers.ClassConnect.family.SaveChanges();
+            MessageBox.Show("Запись добавлена");
+
+            VagTb.Text = "";
+            RabTb.Text = "";
+            Dtg1.Text = "";
+            Dtg2.Text = "";
         }
     }
 }
